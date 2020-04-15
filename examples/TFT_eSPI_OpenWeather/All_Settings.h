@@ -59,7 +59,7 @@ const String shortDOW [8] = {"???", "SUN", "MON", "TUE", "WED", "THU", "FRI", "S
 const char sunStr[]        = "Sun";
 const char cloudStr[]      = "Cloud";
 const char humidityStr[]   = "Humidity";
-//const String moonPhase [8] = {"New", "Waxing", "1st qtr", "Waxing", "Full", "Waning", "Last qtr", "Waning"};
+const String moonPhase [8] = {"New", "Waxing", "1st qtr", "Waxing", "Full", "Waning", "Last qtr", "Waning"};
 
 // End of user settings
 //////////////////////////////

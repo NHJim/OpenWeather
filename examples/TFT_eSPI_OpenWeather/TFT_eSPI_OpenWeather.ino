@@ -456,15 +456,17 @@ void drawAstronomy() {
   tft.setTextColor(TFT_WHITE, TFT_BLACK);
   tft.setTextPadding(tft.textWidth(" Last qtr "));
 
-/*
-  uint8_t moonIndex = (uint8_t)(((float)daily->moonPhase[dayIndex] + 6.25) / 12.5);
-  if (moonIndex > 7) moonIndex = 0;
-  tft.drawString(moonPhase[moonIndex], 120, 319);
+  time_t local_time = TIMEZONE.toLocal(current->dt, &tz1_Code);
+  uint16_t y = year(local_time);
+  uint8_t  m = month(local_time);
+  uint8_t  d = day(local_time);
+  uint8_t  h = hour(local_time);
+  int      ip;
+  uint8_t icon = moon_phase(y, m, d, h, &ip);
 
-  uint8_t moonAgeImage = (24.0 * daily->moonPhase[dayIndex]) / 100;
-  if (moonAgeImage > 23) moonAgeImage = 0;
-  ui.drawBmp("/moon/moonphase_L" + String(moonAgeImage) + ".bmp", 120 - 30, 318 - 16 - 60);
-*/
+  tft.drawString(moonPhase[ip], 120, 319);
+  ui.drawBmp("/moon/moonphase_L" + String(icon) + ".bmp", 120 - 30, 318 - 16 - 60);
+
   tft.setTextDatum(BC_DATUM);
   tft.setTextColor(TFT_ORANGE, TFT_BLACK);
   tft.setTextPadding(0); // Reset padding width to none
