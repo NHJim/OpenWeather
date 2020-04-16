@@ -54,7 +54,7 @@ OW_Weather ow; // Weather forecast library instance
 void setup() { 
   Serial.begin(250000); // Fast to stop it holding up the stream
 
-  Serial.printf("Connecting to %s\n", SSID);
+  Serial.printf("\n\nConnecting to %s\n", WIFI_SSID);
 
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
    
@@ -117,7 +117,7 @@ void printCurrentWeather()
   Serial.print("id               : "); Serial.println(current->id);
   Serial.print("main             : "); Serial.println(current->main);
   Serial.print("description      : "); Serial.println(current->description);
-  Serial.print("icon             : "); Serial.println(current->icon); //Serial.println(getMeteoconIcon(current->icon));
+  Serial.print("icon             : "); Serial.println(current->icon);
 
   Serial.println();
 
@@ -201,13 +201,4 @@ String strTime(time_t unixTime)
 {
   unixTime += TIME_OFFSET;
   return ctime(&unixTime);
-}
-
-/***************************************************************************************
-**                          Get the icon file name from the index number
-***************************************************************************************/
-const char* getMeteoconIcon(uint8_t index)
-{
-  if (index > MAX_ICON_INDEX) index = 0;
-  return ow.iconName(index);
 }
