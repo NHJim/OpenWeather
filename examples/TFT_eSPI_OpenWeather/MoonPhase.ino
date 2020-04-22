@@ -88,8 +88,8 @@ uint8_t moon_phase(int year, int month, int day, double hour, int* ip)
   double t = lm - ls;
   if (t < 0) t += 360;
 
-  *ip = (int)((t + 22.5)/45) & 0x7; // Moon state 0-7 for moonPhase[] index
-  return ((int)(t + 7.5)/15) % 24;  // Moon state 0-23 for icon bitmap
+  *ip = (int)((t + 22.5)/45) & 0x7;        // Moon state 0-7 for moonPhase[] index
+  return ((int)((t + 7.5)/15) + 23) % 24;  // Moon state 0-23 for icon bitmap
 
   //return 100.0 * ((1.0 - cos((lm - ls) * RAD)) / 2) + 0.5; // percent illuminated
 }
